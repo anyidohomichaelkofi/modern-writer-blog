@@ -42,5 +42,22 @@ export const postType = defineType({
       type: 'array',
       of: [{ type: 'block' }, { type: 'image' }],
     }),
+    defineField({
+      {
+  name: 'category',
+  title: 'Category',
+  type: 'string',
+  options: {
+    list: [
+      { title: 'Opportunities', value: 'Opportunities' },
+      { title: 'Career & Skills', value: 'Career & Skills' },
+      { title: 'Money & Online Income', value: 'Money & Online Income' },
+      { title: 'Life & Personal Growth', value: 'Life & Personal Growth' },
+      { title: 'Education & Learning', value: 'Education & Learning' },
+    ],
+  },
+}
+    })
   ],
+  
 })
