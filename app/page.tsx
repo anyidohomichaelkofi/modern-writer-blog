@@ -70,7 +70,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-slate-100 font-sans scroll-smooth">
-      {/* Sticky Header - Dark Mode */}
+      {/* Sticky Header */}
       <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -252,7 +252,6 @@ export default async function HomePage() {
                     </div>
                   </article>
                 </Link>
-              ))}
               ))}
             </div>
           )}
