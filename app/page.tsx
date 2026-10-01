@@ -1,5 +1,4 @@
 import { createClient } from "next-sanity";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -70,7 +69,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans scroll-smooth">
-      {/* Sticky Header */}
+      {/* Sticky Header - Reader Only */}
       <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -82,7 +81,7 @@ export default async function HomePage() {
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8 font-medium text-slate-600 text-sm">
+          <nav className="flex items-center space-x-6 md:space-x-8 font-medium text-slate-600 text-sm">
             <a href="#about" className="hover:text-black transition-colors">
               About
             </a>
@@ -96,13 +95,6 @@ export default async function HomePage() {
               Contact
             </a>
           </nav>
-
-          <Link
-            href="/studio"
-            className="bg-slate-900 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-800 transition-all shadow"
-          >
-            Studio Login
-          </Link>
         </div>
       </header>
 
@@ -221,11 +213,7 @@ export default async function HomePage() {
                 No articles published yet.
               </p>
               <p className="text-sm text-slate-400">
-                Log in to{" "}
-                <Link href="/studio" className="underline font-bold text-slate-900">
-                  Sanity Studio
-                </Link>{" "}
-                to publish your first piece!
+                Check back soon for new articles and opportunities!
               </p>
             </div>
           ) : (
@@ -305,7 +293,7 @@ export default async function HomePage() {
         </section>
       </main>
 
-      {/* Footer */}
+      {/* Clean Footer */}
       <footer className="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
         <p>© {new Date().getFullYear()} Xorse. All rights reserved.</p>
       </footer>
