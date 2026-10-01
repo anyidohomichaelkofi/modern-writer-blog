@@ -1,4 +1,5 @@
 import { createClient } from "next-sanity";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -218,36 +219,40 @@ export default async function HomePage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {posts.map((post) => (
-                <article
+              {{posts.map((post) => (
+                <Link
                   key={post._id}
-                  className="bg-slate-950/80 p-6 rounded-2xl border border-purple-900/40 hover:border-purple-600/60 transition-all flex flex-col justify-between space-y-4 shadow-lg"
+                  href={`/blog/${post.slug.current}`}
+                  className="block group"
                 >
-                  <div className="space-y-2">
-                    {post.category && (
-                      <span className="inline-block px-3 py-1 bg-purple-950 border border-purple-700/50 text-purple-300 text-xs font-bold rounded-lg uppercase">
-                        {post.category}
-                      </span>
-                    )}
-                    <h3 className="text-xl font-bold text-white">
-                      {post.title}
-                    </h3>
-                    {post.publishedAt && (
-                      <p className="text-xs text-purple-400/80 font-medium">
-                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </p>
-                    )}
-                    {post.excerpt && (
-                      <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                    )}
-                  </div>
-                </article>
+                  <article className="bg-slate-950/80 p-6 rounded-2xl border border-purple-900/40 group-hover:border-purple-500 transition-all flex flex-col justify-between space-y-4 shadow-lg h-full">
+                    <div className="space-y-2">
+                      {post.category && (
+                        <span className="inline-block px-3 py-1 bg-purple-950 border border-purple-700/50 text-purple-300 text-xs font-bold rounded-lg uppercase">
+                          {post.category}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                        {post.title}
+                      </h3>
+                      {post.publishedAt && (
+                        <p className="text-xs text-purple-400/80 font-medium">
+                          {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </p>
+                      )}
+                      {post.excerpt && (
+                        <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                </Link>
+              ))}
               ))}
             </div>
           )}
