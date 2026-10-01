@@ -219,7 +219,7 @@ export default async function HomePage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {{posts.map((post) => (
+              {posts.map((post) => (
                 <Link
                   key={post._id}
                   href={`/blog/${post.slug.current}`}
