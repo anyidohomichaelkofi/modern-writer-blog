@@ -71,33 +71,43 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-black text-slate-100 font-sans scroll-smooth">
       {/* Sticky Header */}
-      <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-purple-900/50">
-              X
-            </div>
-            <span className="text-2xl font-black tracking-tight text-white">
-              Xorse
-            </span>
-          </div>
+     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    {/* Logo Container */}
+    <Link href="/" className="flex items-center space-x-3 shrink-0">
+      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-purple-900/50">
+        X
+      </div>
+      <span className="text-2xl font-black tracking-tight text-white">
+        Xorse
+      </span>
+    </Link>
 
-          <nav className="flex items-center space-x-6 md:space-x-8 font-medium text-purple-200/80 text-sm">
-            <a href="#about" className="hover:text-purple-400 transition-colors">
-              About
-            </a>
-            <a href="#categories" className="hover:text-purple-400 transition-colors">
-              Pillars
-            </a>
-            <a href="#writings" className="hover:text-purple-400 transition-colors">
-              Writings
-            </a>
-            <a href="#contact" className="hover:text-purple-400 transition-colors">
-              Contact
-            </a>
-          </nav>
-        </div>
-      </header>
+    {/* Navigation Links - Hidden on mobile, flex on desktop */}
+    <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+      <Link href="#about" className="hover:text-purple-300 transition-colors">
+        About
+      </Link>
+      <Link href="#pillars" className="hover:text-purple-300 transition-colors">
+        Pillars
+      </Link>
+      <Link href="#writings" className="hover:text-purple-300 transition-colors">
+        Writings
+      </Link>
+      <Link href="#contact" className="hover:text-purple-300 transition-colors">
+        Contact
+      </Link>
+    </nav>
+
+    {/* Mobile Quick Action Button */}
+    <Link
+      href="#writings"
+      className="md:hidden text-xs font-bold bg-purple-950 border border-purple-800/60 text-purple-300 px-3.5 py-1.5 rounded-xl hover:bg-purple-900 transition-colors"
+    >
+      Read Articles
+    </Link>
+  </div>
+</header>
 
       {/* Hero Section */}
       <section className="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center space-y-6">
