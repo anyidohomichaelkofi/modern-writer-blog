@@ -298,9 +298,14 @@ export default async function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-purple-900/40 bg-black py-8 text-center text-xs text-purple-300/60">
-        <p>© {new Date().getFullYear()} Xorse. All rights reserved.</p>
-      </footer>
+      <footer className="border-t border-purple-900/40 bg-black py-8 text-center text-xs text-purple-300/60 space-y-2">
+  <p>© {new Date().getFullYear()} Xorse. All rights reserved.</p>
+  <div>
+    <Link href="/privacy" className="hover:text-purple-300 underline transition-colors">
+      Privacy Policy
+    </Link>
+  </div>
+</footer>
     </div>
   );
 }
