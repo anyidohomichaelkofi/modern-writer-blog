@@ -1,5 +1,6 @@
 import { createClient } from "next-sanity";
 import Link from "next/link";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -70,44 +71,48 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-slate-100 font-sans scroll-smooth">
-      {/* Sticky Header */}
-     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-    {/* Logo Container */}
-    <Link href="/" className="flex items-center space-x-3 shrink-0">
-      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-purple-900/50">
-        X
-      </div>
-      <span className="text-2xl font-black tracking-tight text-white">
-        Xorse
-      </span>
-    </Link>
+      {/* Fixed Responsive Header */}
+      <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg shadow-purple-900/50 p-1">
+              <Image
+                src="/xorse-quill-logo.png"
+                alt="Xorse Logo"
+                width={40}
+                height={40}
+                priority
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-2xl font-black tracking-tight text-white">
+              Xorse
+            </span>
+          </Link>
 
-    {/* Navigation Links - Hidden on mobile, flex on desktop */}
-    <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-      <Link href="#about" className="hover:text-purple-300 transition-colors">
-        About
-      </Link>
-      <Link href="#pillars" className="hover:text-purple-300 transition-colors">
-        Pillars
-      </Link>
-      <Link href="#writings" className="hover:text-purple-300 transition-colors">
-        Writings
-      </Link>
-      <Link href="#contact" className="hover:text-purple-300 transition-colors">
-        Contact
-      </Link>
-    </nav>
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-purple-200/80">
+            <a href="#about" className="hover:text-purple-400 transition-colors">
+              About
+            </a>
+            <a href="#categories" className="hover:text-purple-400 transition-colors">
+              Pillars
+            </a>
+            <a href="#writings" className="hover:text-purple-400 transition-colors">
+              Writings
+            </a>
+            <a href="#contact" className="hover:text-purple-400 transition-colors">
+              Contact
+            </a>
+          </nav>
 
-    {/* Mobile Quick Action Button */}
-    <Link
-      href="#writings"
-      className="md:hidden text-xs font-bold bg-purple-950 border border-purple-800/60 text-purple-300 px-3.5 py-1.5 rounded-xl hover:bg-purple-900 transition-colors"
-    >
-      Read Articles
-    </Link>
-  </div>
-</header>
+          <a
+            href="#writings"
+            className="md:hidden text-xs font-bold bg-purple-950 border border-purple-800/60 text-purple-300 px-3.5 py-1.5 rounded-xl hover:bg-purple-900 transition-colors"
+          >
+            Read Articles
+          </a>
+        </div>
+      </header>
 
       {/* Hero Section */}
       <section className="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center space-y-6">
@@ -156,9 +161,7 @@ export default async function HomePage() {
                 className="bg-slate-950/80 p-6 rounded-2xl border border-purple-900/40 hover:border-purple-600/60 shadow-lg transition-all space-y-3"
               >
                 <div className="text-3xl">{cat.icon}</div>
-                <h3 className="text-xl font-bold text-white">
-                  {cat.title}
-                </h3>
+                <h3 className="text-xl font-bold text-white">{cat.title}</h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   {cat.desc}
                 </p>
@@ -173,8 +176,14 @@ export default async function HomePage() {
           className="bg-gradient-to-br from-purple-950/40 to-slate-950 rounded-3xl border border-purple-900/50 p-8 md:p-12 shadow-xl space-y-8"
         >
           <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 text-white flex items-center justify-center font-bold text-3xl flex-shrink-0 shadow-lg shadow-purple-900/60">
-              X
+            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center p-2 flex-shrink-0 shadow-lg shadow-purple-900/60">
+              <Image
+                src="/xorse-quill-logo.png"
+                alt="Xorse Logo"
+                width={80}
+                height={80}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="space-y-6 text-slate-300 leading-relaxed">
               <div className="space-y-2">
@@ -267,7 +276,7 @@ export default async function HomePage() {
           )}
         </section>
 
-        {/* Contact & Opportunity Submissions */}
+        {/* Contact Section */}
         <section
           id="contact"
           className="bg-gradient-to-br from-purple-950 to-black text-white rounded-3xl p-8 md:p-12 space-y-8 shadow-2xl border border-purple-800/50"
@@ -309,13 +318,13 @@ export default async function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-purple-900/40 bg-black py-8 text-center text-xs text-purple-300/60 space-y-2">
-  <p>© {new Date().getFullYear()} Xorse. All rights reserved.</p>
-  <div>
-    <Link href="/privacy" className="hover:text-purple-300 underline transition-colors">
-      Privacy Policy
-    </Link>
-  </div>
-</footer>
+        <p>© {new Date().getFullYear()} Xorse. All rights reserved.</p>
+        <div>
+          <Link href="/privacy" className="hover:text-purple-300 underline transition-colors">
+            Privacy Policy
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }
