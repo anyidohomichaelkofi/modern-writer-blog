@@ -39,6 +39,7 @@ export default function PostPage({
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Engagement States
   const [likes, setLikes] = useState(12);
   const [hasLiked, setHasLiked] = useState(false);
   const [comments, setComments] = useState<Comment[]>([
@@ -51,6 +52,11 @@ export default function PostPage({
   ]);
   const [authorName, setAuthorName] = useState("");
   const [commentText, setCommentText] = useState("");
+
+  // Email Subscription States
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     async function fetchPost() {
@@ -103,6 +109,15 @@ export default function PostPage({
     setAuthorName("");
   };
 
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+
+    // Here you can integrate with Mailchimp, ConvertKit, or a Sanity schema/database
+    setSubscribed(true);
+    setEmail("");
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black text-slate-200 flex items-center justify-center">
@@ -123,7 +138,7 @@ export default function PostPage({
   }
 
   return (
-    <div className="min-h-screen bg-black text-slate-100 font-sans selection:bg-purple-900 selection:text-white">
+    <div className="min-h-screen bg-black text-slate-100 font-sans selection:bg-purple-900 selection:text-white relative">
       {/* Header */}
       <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
         <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -193,6 +208,46 @@ export default function PostPage({
             <p className="text-slate-400">No content available for this post.</p>
           )}
         </article>
+
+        {/* In-Article Optional Subscription Banner */}
+        <div className="bg-gradient-to-br from-purple-950/80 via-black to-slate-950 border border-purple-800/60 rounded-3xl p-6 md:p-8 space-y-4 shadow-xl my-10">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-full bg-purple-900/60 flex items-center justify-center text-purple-300 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white">Never miss a new article or book</h3>
+              <p className="text-xs text-purple-300/80">
+                Get new updates sent directly to your email inbox. Unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+
+          {subscribed ? (
+            <div className="p-3 bg-purple-900/40 border border-purple-600/60 rounded-xl text-center text-sm font-semibold text-purple-200">
+              ✓ Thank you! You've been subscribed to Xorse alerts.
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 bg-black/60 border border-purple-900/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              />
+              <button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-all shadow-md shadow-purple-900/50"
+              >
+                Subscribe (Optional)
+              </button>
+            </form>
+          )}
+        </div>
 
         {/* Action Bar (Likes & Share) */}
         <div className="flex items-center justify-between border-y border-purple-900/40 py-4 my-8">
@@ -299,6 +354,43 @@ export default function PostPage({
           </div>
         </section>
       </main>
+
+      {/* Floating Bottom-Right Subscription Pill (Can be dismissed anytime) */}
+      {showPopup && !subscribed && (
+        <div className="fixed bottom-4 right-4 z-40 max-w-sm bg-slate-950/95 border border-purple-700/60 rounded-2xl p-4 shadow-2xl backdrop-blur-md space-y-3">
+          <div className="flex justify-between items-start">
+            <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">
+              📩 Optional Subscription
+            </span>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="text-slate-400 hover:text-white text-sm font-bold px-1.5"
+              aria-label="Dismiss subscription bar"
+            >
+              ✕
+            </button>
+          </div>
+          <p className="text-xs text-slate-300 leading-snug">
+            Enjoying this piece? Get notified whenever Xorse publishes new articles or books.
+          </p>
+          <form onSubmit={handleSubscribe} className="flex gap-2">
+            <input
+              type="email"
+              required
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-black/80 border border-purple-900/80 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+            />
+            <button
+              type="submit"
+              className="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-3 py-1.5 rounded-lg shrink-0 transition-colors"
+            >
+              Join
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
