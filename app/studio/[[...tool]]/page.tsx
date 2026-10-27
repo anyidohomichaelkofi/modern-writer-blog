@@ -111,7 +111,6 @@ export default function PostPage({
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-
     setSubscribed(true);
     setEmail("");
   };
@@ -137,11 +136,11 @@ export default function PostPage({
 
   return (
     <div className="min-h-screen bg-black text-slate-100 font-sans selection:bg-purple-900 selection:text-white">
-      {/* Reader Header with Custom Quill Logo */}
+      {/* Header with Guaranteed Quill Logo */}
       <header className="sticky top-0 z-30 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
         <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3 group shrink-0">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg shadow-purple-900/50 p-1 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg shadow-purple-900/50 p-1 group-hover:scale-105 transition-transform overflow-hidden">
               <Image
                 src="/xorse-quill-logo.png"
                 alt="Xorse Logo"
@@ -198,7 +197,7 @@ export default function PostPage({
 
         <hr className="border-purple-900/40" />
 
-        {/* Article Content */}
+        {/* Article Body */}
         <article className="prose prose-invert prose-purple max-w-none text-slate-200 leading-relaxed text-base md:text-lg space-y-6">
           {post.body ? (
             <PortableText value={post.body} />
@@ -247,39 +246,39 @@ export default function PostPage({
           </button>
         </div>
 
-        {/* End-of-Article Optional Subscription Section */}
-        <div className="bg-gradient-to-br from-purple-950/80 via-black to-slate-950 border border-purple-800/60 rounded-3xl p-6 md:p-8 space-y-4 shadow-xl my-12">
+        {/* Optional Subscription Box at the End of Reading */}
+        <div className="bg-gradient-to-br from-purple-950 via-slate-950 to-black border-2 border-purple-600/70 rounded-3xl p-6 md:p-8 space-y-4 shadow-2xl my-10">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-purple-900/60 flex items-center justify-center text-purple-300 shrink-0">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <div className="w-12 h-12 rounded-full bg-purple-900/80 flex items-center justify-center text-purple-200 shrink-0">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">Enjoyed this reading?</h3>
-              <p className="text-xs text-purple-300/80">
-                Subscribe to get email notifications whenever Xorse publishes a new article or book.
+              <h3 className="text-xl font-extrabold text-white">Never miss an update from Xorse</h3>
+              <p className="text-xs text-purple-200/80">
+                Optional: Get email alerts when new articles or books are published. No spam, unsubscribe anytime.
               </p>
             </div>
           </div>
 
           {subscribed ? (
-            <div className="p-3 bg-purple-900/40 border border-purple-600/60 rounded-xl text-center text-sm font-semibold text-purple-200">
-              ✓ Thank you! You've been subscribed to Xorse alerts.
+            <div className="p-4 bg-purple-900/60 border border-purple-500 rounded-2xl text-center text-sm font-bold text-purple-100">
+              ✓ You're successfully subscribed to Xorse alerts!
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 pt-2">
               <input
                 type="email"
                 required
-                placeholder="Enter your email address"
+                placeholder="Enter your email address..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-black/60 border border-purple-900/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                className="flex-1 bg-black border border-purple-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
               />
               <button
                 type="submit"
-                className="bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-all shadow-md shadow-purple-900/50 shrink-0"
+                className="bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-lg shadow-purple-900/60 shrink-0"
               >
                 Subscribe (Optional)
               </button>
