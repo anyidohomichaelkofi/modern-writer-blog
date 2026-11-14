@@ -6,7 +6,7 @@ export const metadata = {
   title: "Xorse | Knowledge for your next step",
   description: "Opportunities, life lessons, and guidance for young leaders.",
   verification: {
-    google: "<meta name="google-site-verification" content="YCb5IwQKIBYy1LIT_ZxAwA4KxfQlxyix7W43KELOZk4" />",
+    google: "<meta name="YCb5IwQKIBYy1LIT_ZxAwA4KxfQlxyix7W43KELOZk4...",
   },
 };
 
