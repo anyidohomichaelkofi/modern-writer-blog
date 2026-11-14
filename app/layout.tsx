@@ -1,6 +1,11 @@
+import "./globals.css"; // <--- CRITICAL: This line loads Tailwind CSS!
 import Image from "next/image";
 import Link from "next/link";
-// ... keep your existing imports and font setups ...
+
+export const metadata = {
+  title: "Xorse | Knowledge for your next step",
+  description: "Opportunities, life lessons, and guidance for young leaders.",
+};
 
 export default function RootLayout({
   children,
@@ -8,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-black text-slate-100 font-sans">
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-black text-slate-100 font-sans antialiased selection:bg-purple-900 selection:text-white">
         {/* Global Header */}
         <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-purple-900/40">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
@@ -27,6 +32,28 @@ export default function RootLayout({
               <span className="text-2xl font-black tracking-tight text-white">
                 Xorse
               </span>
+            </Link>
+
+            <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-purple-200/80">
+              <Link href="/#about" className="hover:text-purple-400 transition-colors">
+                About
+              </Link>
+              <Link href="/#categories" className="hover:text-purple-400 transition-colors">
+                Pillars
+              </Link>
+              <Link href="/#writings" className="hover:text-purple-400 transition-colors">
+                Writings
+              </Link>
+              <Link href="/#contact" className="hover:text-purple-400 transition-colors">
+                Contact
+              </Link>
+            </nav>
+
+            <Link
+              href="/#writings"
+              className="md:hidden text-xs font-bold bg-purple-950 border border-purple-800/60 text-purple-300 px-3.5 py-1.5 rounded-xl hover:bg-purple-900 transition-colors"
+            >
+              Read Articles
             </Link>
           </div>
         </header>
